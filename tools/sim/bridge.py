@@ -300,7 +300,7 @@ class CarlaBridge:
     world = client.load_world(self._args.town)
 
     settings = world.get_settings()
-    settings.synchronous_mode = True  # Enables synchronous mode
+    # settings.synchronous_mode = True  # Enables synchronous mode
     settings.fixed_delta_seconds = 0.05
     world.apply_settings(settings)
 
@@ -318,7 +318,7 @@ class CarlaBridge:
 
     world_map = world.get_map()
 
-    vehicle_bp = blueprint_library.filter('vehicle.tesla.*')[1]
+    vehicle_bp = blueprint_library.filter('vehicle')[1]
     vehicle_bp.set_attribute('role_name', 'hero')
     spawn_points = world_map.get_spawn_points()
     assert len(spawn_points) > self._args.num_selected_spawn_point, f'''No spawn point {self._args.num_selected_spawn_point}, try a value between 0 and
@@ -335,7 +335,8 @@ class CarlaBridge:
     # physics_control.wheels = [wheel_control]*4
     physics_control.torque_curve = [[20.0, 500.0], [5000.0, 500.0]]
     physics_control.gear_switch_time = 0.0
-    vehicle.apply_physics_control(physics_control)
+    # vehicle.apply_physics_control(physics_control)
+    vehicle.set_autopilot(True)
 
     transform = carla.Transform(carla.Location(x=0.8, z=1.13))
 

@@ -214,7 +214,6 @@ env = Environment(
     "-fPIC",
     "-O2",
     "-Wunused",
-    "-Werror",
     "-Wshadow",
     "-Wno-unknown-warning-option",
     "-Wno-deprecated-register",
